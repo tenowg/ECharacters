@@ -47,7 +47,8 @@ public class BasicComponent extends Component {
 		boolean meetsReq = true;
 		for (Entry<Class<? extends Component>, Integer> comp : reqComp.entrySet()) {
 			//((Player)getOwner()).sendMessage(comp.getKey().toString());
-			if (!getOwner().has(comp.getKey())) {
+			Component co = getOwner().get(comp.getKey());
+			if (co == null) {
 				meetsReq = false;
 			} else {
 				if (comp.getValue() == -1) {

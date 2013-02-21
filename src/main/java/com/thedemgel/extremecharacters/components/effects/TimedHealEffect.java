@@ -5,7 +5,6 @@ import com.thedemgel.extremecharacters.components.abilities.TimedHealAbility;
 import com.thedemgel.extremecharacters.data.ECharacterData;
 import com.thedemgel.extremecharacters.data.EffectTypes;
 import org.spout.api.entity.Player;
-import org.spout.vanilla.api.event.cause.DamageCause.DamageType;
 
 /**
  *

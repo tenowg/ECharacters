@@ -1,22 +1,24 @@
 
 package com.thedemgel.extremecharacters.components;
 
-import java.lang.reflect.TypeVariable;
-import java.util.Collection;
+import java.util.Collections;
+import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
-import java.util.logging.Level;
-import org.spout.api.Spout;
-import org.spout.api.component.Component;
+import java.util.concurrent.ConcurrentMap;
 import org.spout.api.component.type.EntityComponent;
 import org.spout.api.entity.Entity;
 import org.spout.api.event.player.PlayerInteractEvent.Action;
-import org.spout.api.util.list.concurrent.ConcurrentList;
 
 
 public class ComponentComponent extends EntityComponent {
-	private ConcurrentHashMap<Class<? extends BasicComponent>, BasicComponent> components = new ConcurrentHashMap<Class<? extends BasicComponent>, BasicComponent>();
+	private ConcurrentMap<Class<? extends BasicComponent>, BasicComponent> components = new ConcurrentHashMap<Class<? extends BasicComponent>, BasicComponent>();
 	@SuppressWarnings("MapReplaceableByEnumMap")
-	private ConcurrentHashMap<Enum<?>, ConcurrentList<Class<? extends BasicComponent>>> typeComponents = new ConcurrentHashMap<Enum<?>, ConcurrentList<Class<? extends BasicComponent>>>();
+	private ConcurrentMap<Enum<?>, Set<Class<? extends BasicComponent>>> typeComponents = new ConcurrentHashMap<Enum<?>, Set<Class<? extends BasicComponent>>>();
+		
+		
+	public Set<Class<? extends BasicComponent>> getNewSet() {
+		return Collections.newSetFromMap(new ConcurrentHashMap<Class<? extends BasicComponent>, Boolean>());
+	}
 	
 	public <T extends BasicComponent> void add(Class<T> clazz) {		
 		T component = getOwner().add(clazz);
@@ -24,10 +26,9 @@ public class ComponentComponent extends EntityComponent {
 		if (component != null) {
 			if (component.passRequirements()) {
 				components.put(clazz, component);
-				//for (Enum<?> type : component.getTypes().getTypes()) {
 				for (Enum<?> type : getOwner().get(clazz).getTypes().getTypes()) {	
 					if (!typeComponents.containsKey(type)) {
-						typeComponents.put(type, new ConcurrentList<Class<? extends BasicComponent>>());
+						typeComponents.put(type, Collections.newSetFromMap(new ConcurrentHashMap<Class<? extends BasicComponent>, Boolean>()));
 					}
 					if (!typeComponents.get(type).contains(clazz)) {
 						typeComponents.get(type).add(clazz);

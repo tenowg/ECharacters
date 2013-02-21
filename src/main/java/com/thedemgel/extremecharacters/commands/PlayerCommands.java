@@ -58,14 +58,7 @@ public class PlayerCommands {
 	@Command(aliases = "test", usage = "", desc = "Test effect", min = 0, max = 0)
 	public void test(CommandContext args, CommandSource source) throws CommandException {
 		Player player = (Player) source;
-		if (!player.has(TimedHealAbility.class)) {
-			//player.add(TimedHealAbility.class);
-			player.get(ComponentComponent.class).add(TimedHealAbility.class);
-		}
-
-		if (player.has(TimedHealAbility.class)) {
-			player.get(TimedHealAbility.class).execute();
-		}
+		player.add(TimedHealAbility.class).execute();
 	}
 
 	@Command(aliases = "pause", usage = "", desc = "Test effect", min = 0, max = 0)

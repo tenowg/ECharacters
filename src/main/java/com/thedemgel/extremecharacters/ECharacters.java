@@ -2,6 +2,7 @@ package com.thedemgel.extremecharacters;
 
 import com.thedemgel.extremecharacters.commands.AdminCommands;
 import com.thedemgel.extremecharacters.commands.PlayerCommands;
+import com.thedemgel.extremecharacters.configuration.ECharactersConfiguration;
 import java.util.logging.Level;
 import org.spout.api.Engine;
 import org.spout.api.chat.ChatArguments;
@@ -20,33 +21,43 @@ import org.spout.api.plugin.PluginLogger;
  */
 public class ECharacters extends CommonPlugin {
 
-    private Engine engine;
-    private static ECharacters instance;
+	private Engine engine;
+	private static ECharacters instance;
+	private ECharactersConfiguration config;
 
-    @Override
-    public void onLoad() {
-        this.instance = this;
-        ((PluginLogger) getLogger()).setTag(new ChatArguments(ChatStyle.RESET, "[", ChatStyle.GOLD, "ECharacters", ChatStyle.RESET, "] "));
-        engine = getEngine();
-        getLogger().info("loaded");
-    }
+	@Override
+	public void onLoad() {
+		setInstance(this);
+		((PluginLogger) getLogger()).setTag(new ChatArguments(ChatStyle.RESET, "[", ChatStyle.GOLD, "ECharacters", ChatStyle.RESET, "] "));
+		engine = getEngine();
+		config = new ECharactersConfiguration(getDataFolder());
+		getLogger().info("loaded");
+	}
 
-    @Override
-    public void onEnable() {
-        //Commands
-        final CommandRegistrationsFactory<Class<?>> commandRegFactory = new AnnotatedCommandRegistrationFactory(new SimpleInjector(this), new SimpleAnnotatedCommandExecutorFactory());
-        final RootCommand root = engine.getRootCommand();
-        root.addSubCommands(this, PlayerCommands.class, commandRegFactory);
-        //root.addSubCommands(this, AdminCommands.class, commandRegFactory);
+	@Override
+	public void onEnable() {
+		//Commands
+		final CommandRegistrationsFactory<Class<?>> commandRegFactory = new AnnotatedCommandRegistrationFactory(new SimpleInjector(this), new SimpleAnnotatedCommandExecutorFactory());
+		final RootCommand root = engine.getRootCommand();
+		root.addSubCommands(this, PlayerCommands.class, commandRegFactory);
+		//root.addSubCommands(this, AdminCommands.class, commandRegFactory);
 
-        engine.getEventManager().registerEvents(new PlayerListener(this), this);
+		engine.getEventManager().registerEvents(new PlayerListener(this), this);
 
-        getLogger().log(Level.INFO, "v{0} enabled. Protocol: {1}", new Object[]{getDescription().getVersion(), getDescription().getData("protocol")});
-    }
+		getLogger().log(Level.INFO, "v{0} enabled. Protocol: {1}", new Object[]{getDescription().getVersion(), getDescription().getData("protocol")});
+	}
 
-    @Override
-    public void onDisable() {
-        instance = null;
-        getLogger().info("disabled");
-    }
+	@Override
+	public void onDisable() {
+		instance = null;
+		getLogger().info("disabled");
+	}
+	
+	private static void setInstance(ECharacters plugin) {
+		instance = plugin;
+	}
+	
+	public static ECharacters getInstance() {
+		return instance;
+	}
 }
