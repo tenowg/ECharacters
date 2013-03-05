@@ -31,13 +31,14 @@ public class ECharacters extends CommonPlugin {
 		((PluginLogger) getLogger()).setTag(new ChatArguments(ChatStyle.RESET, "[", ChatStyle.GOLD, "ECharacters", ChatStyle.RESET, "] "));
 		engine = getEngine();
 		config = new ECharactersConfiguration(getDataFolder());
+		config.load();
 		getLogger().info("loaded");
 	}
 
 	@Override
 	public void onEnable() {
 		//Commands
-		final CommandRegistrationsFactory<Class<?>> commandRegFactory = new AnnotatedCommandRegistrationFactory(new SimpleInjector(this), new SimpleAnnotatedCommandExecutorFactory());
+		final CommandRegistrationsFactory<Class<?>> commandRegFactory = new AnnotatedCommandRegistrationFactory(getEngine(), new SimpleAnnotatedCommandExecutorFactory());
 		final RootCommand root = engine.getRootCommand();
 		root.addSubCommands(this, PlayerCommands.class, commandRegFactory);
 		//root.addSubCommands(this, AdminCommands.class, commandRegFactory);

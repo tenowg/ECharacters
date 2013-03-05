@@ -10,7 +10,9 @@ import org.spout.api.util.config.yaml.YamlConfiguration;
 
 public class ECharactersConfiguration extends ConfigurationHolderConfiguration {
 	
-	public static final ConfigurationHolder RESIST_TICK = new ConfigurationHolder(60, "resist", "tick");
+	public static final ConfigurationHolder RESIST_TICK = new ConfigurationHolder(120, "resist", "tick");
+	
+	public static final RaceConfiguration RACES = new RaceConfiguration(ECharacters.getInstance().getDataFolder());
 	
 	public ECharactersConfiguration(File dataFolder) {
 		super(new YamlConfiguration(new File(dataFolder, "config.yml")));
@@ -19,6 +21,8 @@ public class ECharactersConfiguration extends ConfigurationHolderConfiguration {
 	@Override
 	public void load() {
 		try {
+			RACES.load();
+			RACES.save();
 			super.load();
 			super.save();
 		} catch (ConfigurationException e) {

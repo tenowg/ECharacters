@@ -9,5 +9,4 @@ public class ColdResist extends ResistComponent {
 	public ColdResist() {
 		super(60, 1);
 	}
-
 }

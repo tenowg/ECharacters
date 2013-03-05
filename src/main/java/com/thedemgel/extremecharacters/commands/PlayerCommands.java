@@ -6,19 +6,11 @@ import com.thedemgel.extremecharacters.components.StatComponent;
 import com.thedemgel.extremecharacters.components.abilities.TimedHealAbility;
 import com.thedemgel.extremecharacters.components.effects.TimedHealEffect;
 import com.thedemgel.extremecharacters.data.ECharacterData;
-import com.thedemgel.extremecharacters.data.EffectTypes;
-import org.spout.api.Client;
-import org.spout.api.Spout;
 import org.spout.api.command.CommandContext;
 import org.spout.api.command.CommandSource;
 import org.spout.api.command.annotated.Command;
-import org.spout.api.component.Component;
-import org.spout.api.entity.Entity;
-import org.spout.api.entity.EntityPrefab;
 import org.spout.api.entity.Player;
 import org.spout.api.exception.CommandException;
-import org.spout.api.geo.discrete.Point;
-import org.spout.api.plugin.Platform;
 
 /**
  *
