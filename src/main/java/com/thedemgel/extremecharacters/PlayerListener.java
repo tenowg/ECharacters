@@ -1,7 +1,5 @@
 package com.thedemgel.extremecharacters;
 
-import com.thedemgel.extremecharacters.components.ComponentComponent;
-import com.thedemgel.extremecharacters.components.StatComponent;
 import com.thedemgel.extremecharacters.components.resistances.element.ColdResist;
 import com.thedemgel.extremecharacters.components.resistances.element.EarthResist;
 import com.thedemgel.extremecharacters.components.resistances.element.FireResist;
@@ -13,6 +11,12 @@ import com.thedemgel.extremecharacters.components.resistances.primary.DexterityR
 import com.thedemgel.extremecharacters.components.resistances.primary.IntelligenceResist;
 import com.thedemgel.extremecharacters.components.resistances.primary.StrengthResist;
 import com.thedemgel.extremecharacters.components.resistances.primary.WisdomResist;
+import com.thedemgel.extremecharacters.components.stat.stats.Charisma;
+import com.thedemgel.extremecharacters.components.stat.stats.Constitution;
+import com.thedemgel.extremecharacters.components.stat.stats.Dexterity;
+import com.thedemgel.extremecharacters.components.stat.stats.Intelligence;
+import com.thedemgel.extremecharacters.components.stat.stats.Strength;
+import com.thedemgel.extremecharacters.components.stat.stats.Wisdom;
 import org.spout.api.entity.Player;
 import org.spout.api.event.EventHandler;
 import org.spout.api.event.Listener;
@@ -32,8 +36,6 @@ public class PlayerListener implements Listener {
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent event) {
         Player player = event.getPlayer();
-        ComponentComponent comp = player.add(ComponentComponent.class);
-	comp.add(StatComponent.class);
 	
 	player.add(ColdResist.class);
 	player.add(FireResist.class);
@@ -46,6 +48,13 @@ public class PlayerListener implements Listener {
 	player.add(IntelligenceResist.class);
 	player.add(StrengthResist.class);
 	player.add(WisdomResist.class);
+	
+	player.add(Strength.class);
+	player.add(Dexterity.class);
+	player.add(Constitution.class);
+	player.add(Wisdom.class);
+	player.add(Intelligence.class);
+	player.add(Charisma.class);
 	
     }
 }

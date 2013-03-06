@@ -1,6 +1,6 @@
 package com.thedemgel.extremecharacters.configuration;
 
-import com.thedemgel.extremecharacters.components.race.Race;
+import com.thedemgel.extremecharacters.components.race.RaceComponent;
 import java.io.File;
 import java.util.Collection;
 import java.util.HashMap;
@@ -34,9 +34,9 @@ public class RaceConfiguration extends YamlConfiguration {
 	 * if it doesn't exist
 	 *
 	 * @param race of the configuration
-	 * @return the Race configuration node
+	 * @return the RaceComponent configuration node
 	 */
-	public RaceConfigurationNode get(Race race) {
+	public RaceConfigurationNode get(RaceComponent race) {
 		return get(race.getName());
 	}
 
@@ -45,7 +45,7 @@ public class RaceConfiguration extends YamlConfiguration {
 	 * if it doesn't exist
 	 *
 	 * @param racename of the configuration
-	 * @return the Race configuration node
+	 * @return the RaceComponent configuration node
 	 */
 	public final RaceConfigurationNode get(String racename) {
 		synchronized (raceNodes) {

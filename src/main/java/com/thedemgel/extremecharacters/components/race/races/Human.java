@@ -1,10 +1,10 @@
 
 package com.thedemgel.extremecharacters.components.race.races;
 
-import com.thedemgel.extremecharacters.components.race.Race;
+import com.thedemgel.extremecharacters.components.race.RaceComponent;
 
 
-public class Human extends Race {
+public class Human extends RaceComponent {
 
 	@Override
 	public String getName() {

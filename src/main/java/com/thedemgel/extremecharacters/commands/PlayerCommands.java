@@ -1,10 +1,14 @@
 package com.thedemgel.extremecharacters.commands;
 
 import com.thedemgel.extremecharacters.ECharacters;
-import com.thedemgel.extremecharacters.components.ComponentComponent;
-import com.thedemgel.extremecharacters.components.StatComponent;
-import com.thedemgel.extremecharacters.components.abilities.TimedHealAbility;
-import com.thedemgel.extremecharacters.components.effects.TimedHealEffect;
+import com.thedemgel.extremecharacters.components.ability.abilities.TimedHealAbility;
+import com.thedemgel.extremecharacters.components.effect.effects.TimedHealEffect;
+import com.thedemgel.extremecharacters.components.stat.stats.Charisma;
+import com.thedemgel.extremecharacters.components.stat.stats.Constitution;
+import com.thedemgel.extremecharacters.components.stat.stats.Dexterity;
+import com.thedemgel.extremecharacters.components.stat.stats.Intelligence;
+import com.thedemgel.extremecharacters.components.stat.stats.Strength;
+import com.thedemgel.extremecharacters.components.stat.stats.Wisdom;
 import com.thedemgel.extremecharacters.data.ECharacterData;
 import org.spout.api.command.CommandContext;
 import org.spout.api.command.CommandSource;
@@ -28,23 +32,19 @@ public class PlayerCommands {
 	public void stats(CommandContext args, CommandSource source) throws CommandException {
 		Player player = (Player) source;
 
-		StatComponent comp = player.get(StatComponent.class);
-
-		player.sendMessage("STR: ", comp.getStat(ECharacterData.STAT_STRENGTH));
-		player.sendMessage("DEX: ", comp.getStat(ECharacterData.STAT_DEXTERITY));
-		player.sendMessage("BOD: ", comp.getStat(ECharacterData.STAT_BODY));
-		player.sendMessage("INT: ", comp.getStat(ECharacterData.STAT_INTELLIGENCE));
-		player.sendMessage("WIS: ", comp.getStat(ECharacterData.STAT_WISDOM));
-		player.sendMessage("CHA: ", comp.getStat(ECharacterData.STAT_CHARISMA));
+		player.sendMessage("STR: ", player.get(Strength.class).getStat());
+		player.sendMessage("DEX: ", player.get(Dexterity.class).getStat());
+		player.sendMessage("BOD: ", player.get(Constitution.class).getStat());
+		player.sendMessage("INT: ", player.get(Intelligence.class).getStat());
+		player.sendMessage("WIS: ", player.get(Wisdom.class).getStat());
+		player.sendMessage("CHA: ", player.get(Charisma.class).getStat());
 	}
 
 	@Command(aliases = "addstat", usage = "[stat]", desc = "Add to a players stats.", min = 1, max = 1)
 	public void addStat(CommandContext args, CommandSource source) throws CommandException {
-		Player player = (Player) source;
-
-		StatComponent comp = player.get(StatComponent.class);
-
-		comp.setStat(ECharacterData.STAT_BODY, comp.getStat(ECharacterData.STAT_BODY) + 1);
+		Player player = (Player) source;;
+		
+		player.get(Constitution.class);
 	}
 
 	@Command(aliases = "test", usage = "", desc = "Test effect", min = 0, max = 0)
@@ -62,6 +62,6 @@ public class PlayerCommands {
 	@Command(aliases = "remove", usage = "", desc = "Test effect", min = 0, max = 0)
 	public void remove(CommandContext args, CommandSource source) throws CommandException {
 		Player player = (Player) source;
-		player.get(ComponentComponent.class).remove(TimedHealEffect.class);
+		player.detach(TimedHealEffect.class);
 	}
 }

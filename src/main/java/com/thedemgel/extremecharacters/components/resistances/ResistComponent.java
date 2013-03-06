@@ -1,17 +1,17 @@
 
 package com.thedemgel.extremecharacters.components.resistances;
 
-import com.thedemgel.extremecharacters.components.BasicComponent;
+import com.thedemgel.extremecharacters.ECharacters;
+import com.thedemgel.extremecharacters.components.EComponent;
 import com.thedemgel.extremecharacters.configuration.ECharactersConfiguration;
 import java.util.Collections;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
-import org.spout.api.Spout;
 import org.spout.api.component.type.EntityComponent;
 
 
 public class ResistComponent extends EntityComponent {
-	protected Set<Class<? extends BasicComponent>> resists = Collections.newSetFromMap(new ConcurrentHashMap<Class<? extends BasicComponent>, Boolean>());
+	protected Set<Class<? extends EComponent>> resists = Collections.newSetFromMap(new ConcurrentHashMap<Class<? extends EComponent>, Boolean>());
 
 	protected double maxResist;
 	protected double currentResist;
@@ -56,7 +56,7 @@ public class ResistComponent extends EntityComponent {
 	private class ValidateResists implements Runnable {
 		@Override
 		public void run() {
-			Spout.getLogger().info(Thread.currentThread().getName());
+			ECharacters.getInstance().getLogger().info(Thread.currentThread().getName());
 		}
 	}
 }

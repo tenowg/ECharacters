@@ -1,28 +1,19 @@
-package com.thedemgel.extremecharacters.components.effects;
+package com.thedemgel.extremecharacters.components.effect.effects;
 
-import com.thedemgel.extremecharacters.components.EffectComponent;
-import com.thedemgel.extremecharacters.components.abilities.TimedHealAbility;
+import com.thedemgel.extremecharacters.annotations.require.Requirements;
+import com.thedemgel.extremecharacters.annotations.require.requirements.RequireAbility;
+import com.thedemgel.extremecharacters.annotations.types.Types;
+import com.thedemgel.extremecharacters.components.ability.abilities.TimedHealAbility;
+import com.thedemgel.extremecharacters.components.effect.EffectComponent;
 import com.thedemgel.extremecharacters.data.ECharacterData;
 import com.thedemgel.extremecharacters.data.EffectTypes;
 import org.spout.api.entity.Player;
 
-/**
- *
- * @author Craig <tenowg at thedemgel.com>
- */
+@Types(types = {EffectTypes.BUFF, EffectTypes.HEALTH, EffectTypes.HEAL})
+@Requirements(
+	abilities = {
+		@RequireAbility(required = TimedHealAbility.class)})
 public class TimedHealEffect extends EffectComponent {
-
-	public TimedHealEffect() {
-		addComponentReq(TimedHealAbility.class);
-	}
-	
-	@Override
-	public void onAttached() {
-		addType(EffectTypes.BUFF);
-		addType(EffectTypes.HEALTH);
-		addType(EffectTypes.HEAL);
-		super.onAttached();
-	}
 
 	@Override
 	public void onTick(float dt) {
