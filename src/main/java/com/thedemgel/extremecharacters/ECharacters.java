@@ -1,8 +1,11 @@
 package com.thedemgel.extremecharacters;
 
+import com.thedemgel.extremecharacters.annotations.Requirement;
 import com.thedemgel.extremecharacters.commands.AdminCommands;
 import com.thedemgel.extremecharacters.commands.PlayerCommands;
+import com.thedemgel.extremecharacters.components.EComponent;
 import com.thedemgel.extremecharacters.configuration.ECharactersConfiguration;
+import java.util.Map;
 import java.util.logging.Level;
 import org.spout.api.Engine;
 import org.spout.api.chat.ChatArguments;
@@ -12,6 +15,7 @@ import org.spout.api.command.RootCommand;
 import org.spout.api.command.annotated.AnnotatedCommandRegistrationFactory;
 import org.spout.api.command.annotated.SimpleAnnotatedCommandExecutorFactory;
 import org.spout.api.command.annotated.SimpleInjector;
+import org.spout.api.entity.Player;
 import org.spout.api.plugin.CommonPlugin;
 import org.spout.api.plugin.PluginLogger;
 
@@ -53,12 +57,22 @@ public class ECharacters extends CommonPlugin {
 		instance = null;
 		getLogger().info("disabled");
 	}
-	
+
 	private static void setInstance(ECharacters plugin) {
 		instance = plugin;
 	}
-	
+
 	public static ECharacters getInstance() {
 		return instance;
+	}
+
+	public static <T extends EComponent> Map<Class<? extends EComponent>, String> addComponent(Player player, Class<T> component) {
+		Map<Class<? extends EComponent>, String> passReq = Requirement.parse(player, component);
+		if (passReq.isEmpty()) {
+			player.add(component);
+			return passReq;
+		}
+
+		return passReq;
 	}
 }

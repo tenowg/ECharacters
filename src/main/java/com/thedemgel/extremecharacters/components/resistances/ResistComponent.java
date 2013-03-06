@@ -7,10 +7,9 @@ import com.thedemgel.extremecharacters.configuration.ECharactersConfiguration;
 import java.util.Collections;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
-import org.spout.api.component.type.EntityComponent;
 
 
-public class ResistComponent extends EntityComponent {
+public class ResistComponent extends EComponent {
 	protected Set<Class<? extends EComponent>> resists = Collections.newSetFromMap(new ConcurrentHashMap<Class<? extends EComponent>, Boolean>());
 
 	protected double maxResist;
