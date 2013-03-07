@@ -55,7 +55,11 @@ public class ResistComponent extends EComponent {
 	private class ValidateResists implements Runnable {
 		@Override
 		public void run() {
-			ECharacters.getInstance().getLogger().info(Thread.currentThread().getName());
+			ECharacters.getInstance().getLogger().info(getName());
 		}
+	}
+	
+	private String getName() {
+		return this.getClass().getSimpleName();
 	}
 }

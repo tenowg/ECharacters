@@ -5,6 +5,7 @@ import com.thedemgel.extremecharacters.commands.AdminCommands;
 import com.thedemgel.extremecharacters.commands.PlayerCommands;
 import com.thedemgel.extremecharacters.components.EComponent;
 import com.thedemgel.extremecharacters.configuration.ECharactersConfiguration;
+import com.thedemgel.extremecharacters.skill.Skills;
 import java.util.Map;
 import java.util.logging.Level;
 import org.spout.api.Engine;
@@ -28,6 +29,7 @@ public class ECharacters extends CommonPlugin {
 	private Engine engine;
 	private static ECharacters instance;
 	private ECharactersConfiguration config;
+	private Skills skills;
 
 	@Override
 	public void onLoad() {
@@ -41,11 +43,12 @@ public class ECharacters extends CommonPlugin {
 
 	@Override
 	public void onEnable() {
+		skills = new Skills();
 		//Commands
-		final CommandRegistrationsFactory<Class<?>> commandRegFactory = new AnnotatedCommandRegistrationFactory(getEngine(), new SimpleAnnotatedCommandExecutorFactory());
+		final CommandRegistrationsFactory<Class<?>> commandRegFactory = new AnnotatedCommandRegistrationFactory(getEngine(), new SimpleInjector(this), new SimpleAnnotatedCommandExecutorFactory());
 		final RootCommand root = engine.getRootCommand();
 		root.addSubCommands(this, PlayerCommands.class, commandRegFactory);
-		//root.addSubCommands(this, AdminCommands.class, commandRegFactory);
+		root.addSubCommands(this, AdminCommands.class, commandRegFactory);
 
 		engine.getEventManager().registerEvents(new PlayerListener(this), this);
 
@@ -64,6 +67,10 @@ public class ECharacters extends CommonPlugin {
 
 	public static ECharacters getInstance() {
 		return instance;
+	}
+	
+	public Skills getSkills() {
+		return skills;
 	}
 
 	public static <T extends EComponent> Map<Class<? extends EComponent>, String> addComponent(Player player, Class<T> component) {
