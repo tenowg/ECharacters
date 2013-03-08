@@ -10,5 +10,5 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.TYPE)
 public @interface RequireRace {
-	Class<? extends RaceComponent> required();
+	Class<? extends RaceComponent> value();
 }

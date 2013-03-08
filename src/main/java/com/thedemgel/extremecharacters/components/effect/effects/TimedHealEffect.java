@@ -9,7 +9,7 @@ import com.thedemgel.extremecharacters.data.ECharacterData;
 import com.thedemgel.extremecharacters.data.EffectTypes;
 import org.spout.api.entity.Player;
 
-@Types(types = {EffectTypes.BUFF, EffectTypes.HEALTH, EffectTypes.HEAL})
+@Types({EffectTypes.BUFF, EffectTypes.HEALTH, EffectTypes.HEAL})
 @Requirements(
 	abilities = {
 		@RequireAbility(required = TimedHealAbility.class)})

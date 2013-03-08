@@ -65,6 +65,7 @@ public class ECharacters extends CommonPlugin {
 		instance = plugin;
 	}
 
+	@Deprecated
 	public static ECharacters getInstance() {
 		return instance;
 	}

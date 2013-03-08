@@ -1,5 +1,7 @@
 package com.thedemgel.extremecharacters;
 
+import com.thedemgel.extremecharacters.components.player.HUD;
+import com.thedemgel.extremecharacters.components.player.PlayerLevel;
 import com.thedemgel.extremecharacters.components.resistances.element.ColdResist;
 import com.thedemgel.extremecharacters.components.resistances.element.EarthResist;
 import com.thedemgel.extremecharacters.components.resistances.element.FireResist;
@@ -55,6 +57,9 @@ public class PlayerListener implements Listener {
 	player.add(Wisdom.class);
 	player.add(Intelligence.class);
 	player.add(Charisma.class);
+	
+	player.add(HUD.class);
+	player.add(PlayerLevel.class);
 	
     }
 }

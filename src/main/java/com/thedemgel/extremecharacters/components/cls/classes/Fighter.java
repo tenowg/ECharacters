@@ -13,7 +13,7 @@ import com.thedemgel.extremecharacters.components.stat.stats.Strength;
 	classes = {
 		@RequireClass(required = Mage.class, level = 2)},
 	races = {
-		@RequireRace(required = Human.class)},
+		@RequireRace(Human.class)},
 	stats = {
 		@RequireStat(required = Strength.class, stat = 3)})
 public class Fighter extends ClassComponent {

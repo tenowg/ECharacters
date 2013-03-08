@@ -38,8 +38,8 @@ public class Requirement {
 			}
 			
 			for (RequireRace reqrace : reqRace) {
-				if (player.get(reqrace.required()) == null) {
-					err.put(reqrace.required(), "Required race not found.");
+				if (player.get(reqrace.value()) == null) {
+					err.put(reqrace.value(), "Required race not found.");
 				}
 			}
 			

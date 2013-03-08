@@ -1,8 +1,7 @@
 package com.thedemgel.extremecharacters.commands;
 
 import com.thedemgel.extremecharacters.ECharacters;
-import com.thedemgel.extremecharacters.components.ability.abilities.TimedHealAbility;
-import com.thedemgel.extremecharacters.skill.skills.Mining;
+import com.thedemgel.extremecharacters.skill.skills.mining.Excavating;
 import org.spout.api.command.CommandContext;
 import org.spout.api.command.CommandSource;
 import org.spout.api.command.annotated.Command;
@@ -24,6 +23,6 @@ public class AdminCommands {
 	public void test(CommandContext args, CommandSource source) throws CommandException {
 		Player player = (Player) source;
 		
-		player.sendMessage(plugin.getSkills().getSkill(Mining.EXCAVATING).name());
+		player.sendMessage(plugin.getSkills().getSkill(Excavating.class).name());
 	}
 }

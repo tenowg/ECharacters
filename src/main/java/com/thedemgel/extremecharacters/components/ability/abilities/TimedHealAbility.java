@@ -14,7 +14,7 @@ import com.thedemgel.extremecharacters.components.stat.stats.Constitution;
 import com.thedemgel.extremecharacters.data.EffectTypes;
 import org.spout.api.entity.Player;
 
-@Types(types = {EffectTypes.HEAL, EffectTypes.BUFF, EffectTypes.HEALTH})
+@Types({EffectTypes.HEAL, EffectTypes.BUFF, EffectTypes.HEALTH})
 @Requirements(
 	classes = {
 		@RequireClass(required = Cleric.class)},

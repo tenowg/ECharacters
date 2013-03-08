@@ -10,9 +10,10 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 @Retention(RetentionPolicy.RUNTIME)
-@Target(ElementType.FIELD)
+@Target(ElementType.TYPE)
 public @interface Skill {
 	String name();
 	Class<? extends StatComponent> base();
 	Class<? extends EffectComponent> effect() default NullEffect.class;
+	boolean trained() default false;
 }
