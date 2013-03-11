@@ -1,5 +1,6 @@
 package com.thedemgel.extremecharacters.components.effect.effects;
 
+import com.thedemgel.extremecharacters.annotations.DataKey;
 import com.thedemgel.extremecharacters.annotations.require.Requirements;
 import com.thedemgel.extremecharacters.annotations.require.requirements.RequireAbility;
 import com.thedemgel.extremecharacters.annotations.types.Types;
@@ -13,12 +14,11 @@ import org.spout.api.entity.Player;
 @Requirements(
 	abilities = {
 		@RequireAbility(required = TimedHealAbility.class)})
+@DataKey("timedhealeffect")
 public class TimedHealEffect extends EffectComponent {
 
 	@Override
-	public void onTick(float dt) {
-		super.onTick(dt);
-
+	public void effectTick(float dt) {
 		if (getData().get(ECharacterData.EFFECT_INTERVAL_COUNT) % getData().get(ECharacterData.EFFECT_INTERVAL) == 0) {
 			getData().put(ECharacterData.EFFECT_INTERVAL_COUNT, 0L);
 			// Execute Heal Effect
