@@ -19,12 +19,12 @@ public class TimedHealEffect extends EffectComponent {
 
 	@Override
 	public void effectTick(float dt) {
-		if (getData().get(ECharacterData.EFFECT_INTERVAL_COUNT) % getData().get(ECharacterData.EFFECT_INTERVAL) == 0) {
-			getData().put(ECharacterData.EFFECT_INTERVAL_COUNT, 0L);
+		if (getDatatable().get(ECharacterData.EFFECT_INTERVAL_COUNT) % getDatatable().get(ECharacterData.EFFECT_INTERVAL) == 0) {
+			getDatatable().put(ECharacterData.EFFECT_INTERVAL_COUNT, 0L);
 			// Execute Heal Effect
 			((Player) getOwner()).sendMessage("Healed");
 		}
-		getData().put(ECharacterData.EFFECT_INTERVAL_COUNT, getData().get(ECharacterData.EFFECT_INTERVAL_COUNT) + 1);
+		getDatatable().put(ECharacterData.EFFECT_INTERVAL_COUNT, getDatatable().get(ECharacterData.EFFECT_INTERVAL_COUNT) + 1);
 	}
 
 	@Override
@@ -35,6 +35,6 @@ public class TimedHealEffect extends EffectComponent {
 	}
 
 	public void setInterval(long ticks) {
-		getData().put(ECharacterData.EFFECT_INTERVAL, ticks);
+		getDatatable().put(ECharacterData.EFFECT_INTERVAL, ticks);
 	}
 }

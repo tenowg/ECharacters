@@ -9,16 +9,11 @@ import com.thedemgel.extremecharacters.skill.Skills;
 import java.util.Map;
 import java.util.logging.Level;
 import org.spout.api.Engine;
-import org.spout.api.chat.ChatArguments;
-import org.spout.api.chat.style.ChatStyle;
-import org.spout.api.command.CommandRegistrationsFactory;
-import org.spout.api.command.RootCommand;
-import org.spout.api.command.annotated.AnnotatedCommandRegistrationFactory;
-import org.spout.api.command.annotated.SimpleAnnotatedCommandExecutorFactory;
-import org.spout.api.command.annotated.SimpleInjector;
+import org.spout.api.command.annotated.AnnotatedCommandExecutorFactory;
 import org.spout.api.entity.Player;
 import org.spout.api.plugin.CommonPlugin;
 import org.spout.api.plugin.PluginLogger;
+import org.spout.vanilla.ChatStyle;
 
 /**
  *
@@ -34,7 +29,7 @@ public class ECharacters extends CommonPlugin {
 	@Override
 	public void onLoad() {
 		setInstance(this);
-		((PluginLogger) getLogger()).setTag(new ChatArguments(ChatStyle.RESET, "[", ChatStyle.GOLD, "ECharacters", ChatStyle.RESET, "] "));
+		((PluginLogger) getLogger()).setTag(ChatStyle.RESET + "[" + ChatStyle.GOLD + "ECharacters" + ChatStyle.RESET + "] ");
 		engine = getEngine();
 		config = new ECharactersConfiguration(getDataFolder());
 		config.load();
@@ -45,10 +40,13 @@ public class ECharacters extends CommonPlugin {
 	public void onEnable() {
 		skills = new Skills();
 		//Commands
-		final CommandRegistrationsFactory<Class<?>> commandRegFactory = new AnnotatedCommandRegistrationFactory(getEngine(), new SimpleInjector(this), new SimpleAnnotatedCommandExecutorFactory());
-		final RootCommand root = engine.getRootCommand();
-		root.addSubCommands(this, PlayerCommands.class, commandRegFactory);
-		root.addSubCommands(this, AdminCommands.class, commandRegFactory);
+		//final CommandRegistrationsFactory<Class<?>> commandRegFactory = new AnnotatedCommandRegistrationFactory(getEngine(), new SimpleInjector(this), new SimpleAnnotatedCommandExecutorFactory());
+		//final RootCommand root = engine.getRootCommand();
+		//root.addSubCommands(this, PlayerCommands.class, commandRegFactory);
+		//root.addSubCommands(this, AdminCommands.class, commandRegFactory);
+		
+		AnnotatedCommandExecutorFactory.create(new PlayerCommands(this));
+		AnnotatedCommandExecutorFactory.create(new AdminCommands(this));
 
 		engine.getEventManager().registerEvents(new PlayerListener(this), this);
 

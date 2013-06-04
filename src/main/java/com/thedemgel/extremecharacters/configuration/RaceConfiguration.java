@@ -10,7 +10,7 @@ import org.spout.api.util.config.yaml.YamlConfiguration;
 
 public class RaceConfiguration extends YamlConfiguration {
 
-	private final Map<String, RaceConfigurationNode> raceNodes = new HashMap<String, RaceConfigurationNode>();
+	private final Map<String, RaceConfigurationNode> raceNodes = new HashMap<>();
 	public static RaceConfigurationNode HUMAN;
 	public static RaceConfigurationNode ELF;
 	public static RaceConfigurationNode GIANT;

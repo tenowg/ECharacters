@@ -9,7 +9,7 @@ public class EffectComponent extends EComponent {
 	
 	public void setDuration(Float duration) {
 		if (getDataKey() != null) {
-			getData().put(getDataKey() + "-effect-duration", duration);
+			getDatatable().put(getDataKey() + "-effect-duration", duration);
 		}
 	}
 	
@@ -33,7 +33,7 @@ public class EffectComponent extends EComponent {
 	public final void onTick(float dt) {
 		if (canTick()) {
 			effectTick(dt);
-			getData().put(getDataKey() + "-effect-duration", getData().get(getDataKey() + "-effect-duration", Float.class) - dt);
+			getDatatable().put(getDataKey() + "-effect-duration", getDatatable().get(getDataKey() + "-effect-duration", Float.class) - dt);
 		}
 	}
 	

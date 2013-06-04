@@ -2,7 +2,7 @@
 package com.thedemgel.extremecharacters.components;
 
 import com.thedemgel.extremecharacters.annotations.DataKey;
-import org.spout.api.component.type.EntityComponent;
+import org.spout.api.component.entity.EntityComponent;
 
 public class EComponent extends EntityComponent {
 	
