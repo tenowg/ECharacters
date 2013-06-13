@@ -11,7 +11,7 @@ import java.util.logging.Level;
 import org.spout.api.Engine;
 import org.spout.api.command.annotated.AnnotatedCommandExecutorFactory;
 import org.spout.api.entity.Player;
-import org.spout.api.plugin.CommonPlugin;
+import org.spout.api.plugin.Plugin;
 import org.spout.api.plugin.PluginLogger;
 import org.spout.vanilla.ChatStyle;
 
@@ -19,7 +19,7 @@ import org.spout.vanilla.ChatStyle;
  *
  * @author Craig <tenowg at thedemgel.com>
  */
-public class ECharacters extends CommonPlugin {
+public class ECharacters extends Plugin {
 
 	private Engine engine;
 	private static ECharacters instance;
