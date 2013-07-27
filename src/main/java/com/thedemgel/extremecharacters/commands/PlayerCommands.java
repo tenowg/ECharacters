@@ -11,7 +11,7 @@ import com.thedemgel.extremecharacters.components.stat.stats.Strength;
 import com.thedemgel.extremecharacters.components.stat.stats.Wisdom;
 import org.spout.api.command.CommandArguments;
 import org.spout.api.command.CommandSource;
-import org.spout.api.command.annotated.Command;
+import org.spout.api.command.annotated.CommandDescription;
 import org.spout.api.entity.Player;
 import org.spout.api.exception.CommandException;
 
@@ -27,7 +27,7 @@ public class PlayerCommands {
 		this.plugin = instance;
 	}
 
-	@Command(aliases = "stats", usage = "", desc = "Lists players stats.", min = 0, max = 0)
+	@CommandDescription(aliases = "stats", usage = "", desc = "Lists players stats.")
 	public void stats(CommandSource source, CommandArguments args) throws CommandException {
 		Player player = (Player) source;
 
@@ -39,26 +39,26 @@ public class PlayerCommands {
 		player.sendMessage("CHA: " + player.get(Charisma.class).getStat());
 	}
 
-	@Command(aliases = "addstat", usage = "[stat]", desc = "Add to a players stats.", min = 1, max = 1)
+	@CommandDescription(aliases = "addstat", usage = "[stat]", desc = "Add to a players stats.")
 	public void addStat(CommandSource source, CommandArguments args) throws CommandException {
 		Player player = (Player) source;;
 		
 		player.get(Constitution.class);
 	}
 
-	@Command(aliases = "test", usage = "", desc = "Test effect", min = 0, max = 0)
+	@CommandDescription(aliases = "test", usage = "", desc = "Test effect")
 	public void test(CommandSource source, CommandArguments args) throws CommandException {
 		Player player = (Player) source;
 		player.add(TimedHealAbility.class).execute();
 	}
 
-	@Command(aliases = "pause", usage = "", desc = "Test effect", min = 0, max = 0)
+	@CommandDescription(aliases = "pause", usage = "", desc = "Test effect")
 	public void pause(CommandSource source, CommandArguments args) throws CommandException {
 		Player player = (Player) source;
 		player.get(TimedHealEffect.class).pause();
 	}
 
-	@Command(aliases = "remove", usage = "", desc = "Test effect", min = 0, max = 0)
+	@CommandDescription(aliases = "remove", usage = "", desc = "Test effect")
 	public void remove(CommandSource source, CommandArguments args) throws CommandException {
 		Player player = (Player) source;
 		player.detach(TimedHealEffect.class);

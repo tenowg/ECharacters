@@ -13,6 +13,6 @@ public class StatComponent extends EComponent {
 	}
 	
 	public Integer getStat() {
-		return getDatatable().get(getDataKey() + "stat", Integer.class);
+		return getData().get(getDataKey() + "stat", Integer.class);
 	}
 }
